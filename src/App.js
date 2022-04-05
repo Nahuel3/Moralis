@@ -5,15 +5,16 @@ import Transfer from "./Transfer"
 
 function App() {
 
-    const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
+  const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
 
-    const login = async () => {
+    const login =  () => {
+     
       if (!isAuthenticated) {
 
-        await authenticate({signingMessage: "Log in using Moralis" })
+         authenticate({signingMessage: "Log in " })
           .then(function (user) {
             console.log("logged in user:", user);
-            console.log(!user.get("ethAddress"));
+            console.log(user?.get("ethAddress"));
           })
           .catch(function (error) {
             console.log(error);
@@ -28,8 +29,8 @@ function App() {
 
   return (
     <div>
-      <h1>Moralis Hello World!</h1>
-      <button onClick={login}>Moralis Metamask Login</button>
+      <h1>Mundo</h1>
+      <button onClick={login}> Metamask Login</button>
       <button onClick={logOut} disabled={isAuthenticating}>Logout</button>
       <Transfer></Transfer>
     </div>
