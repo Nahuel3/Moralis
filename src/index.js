@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { MoralisProvider } from "react-moralis";
+import "./style.scss";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
 import { useMoralis } from "react-moralis";
-import Transfer from "./Transfer"
-import Usdt from "./usdt"
-import Bnb from "./bnb"
+import Transfer from "./Transfer";
+import Usdt from "./usdt";
+import Bnb from "./bnb";
+
 
 function App() {
 
@@ -34,9 +34,16 @@ function App() {
       <h1>Mundo</h1>
       <button onClick={login}> Metamask Login</button>
       <button onClick={logOut} disabled={isAuthenticating}>Logout</button>
+
+      
+      <section>
+      <div className='transferir'>
       <Transfer></Transfer>
       <Usdt></Usdt>
       <Bnb></Bnb>
+      </div>
+      </section>
+     
     </div>
   );
 }

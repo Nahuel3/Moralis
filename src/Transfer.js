@@ -59,8 +59,8 @@ const TransferEth = () => {
       }}
 
       >
-        <FormControl mt="4">
-        <h2>Transferir token (ETH)</h2>
+        <FormControl  mt="4">
+        <h2> From : Transferir token (ETH)</h2>
           <NumberInput step={0.1} onChange={handleChange} >
             <NumberInputField id="amount" value={amount} ></NumberInputField>
             <NumberInputStepper>
