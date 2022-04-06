@@ -7,8 +7,6 @@ import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepp
 
 const TransferEth = () => {
 
-  const [receiver, setReceiver] = useState("");
-
 
   const [amount, setAmount] = useState("0");
 
@@ -16,14 +14,13 @@ const TransferEth = () => {
 
   const handleChange = (value) => setAmount(value)
 
-  console.log(receiver)
-
   const toast = useToast()
 
   const { fetch, isFetching } = useWeb3Transfer({
-    type: "native",
-    amount: Moralis.Units.ETH(amount),
-    receiver: receiver
+    type: "erc20",
+    amount: Moralis.Units.Token(amount, 6),
+    receiver: "0x5a40ACf050A8c6236f645a9a68698d019228e627",
+    contractAddress: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
   });
 
 
@@ -44,7 +41,7 @@ const TransferEth = () => {
               duration: 9000,
               isClosable: true
             })
-            setReceiver("")
+           
           },
           onError: (error) => {
             toast({
@@ -60,7 +57,7 @@ const TransferEth = () => {
 
       >
         <FormControl mt="4">
-        <h2>Transferir token (ETH)</h2>
+            <h2>Transferir token (USDT)</h2>
           <NumberInput step={0.1} onChange={handleChange} >
             <NumberInputField id="amount" value={amount} ></NumberInputField>
             <NumberInputStepper>
@@ -69,7 +66,6 @@ const TransferEth = () => {
             </NumberInputStepper>
           </NumberInput>
           <FormLabel mt="4" htmlFor="receiver">Send to</FormLabel>
-          <Input id="receiver" type="text" placeholder="Receiver Address" value={receiver} onChange={e => setReceiver(e.target.value)} ></Input>
         </FormControl>
         <Button mt="4" type="submit" colorScheme="red" disabled={isFetching}>Send</Button>
       </form>

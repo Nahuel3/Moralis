@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { useMoralis } from "react-moralis";
 import Transfer from "./Transfer"
+import Usdt from "./usdt"
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
       <button onClick={login}> Metamask Login</button>
       <button onClick={logOut} disabled={isAuthenticating}>Logout</button>
       <Transfer></Transfer>
+      <Usdt></Usdt>
     </div>
   );
 }
