@@ -1,37 +1,30 @@
 import React from "react";
 import { useWeb3Transfer } from "react-moralis";
-import  Moralis  from "moralis";
+import Moralis from "moralis";
 import { useState } from "react";
+import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel, Input } from "@chakra-ui/react"
 
 const TransferEth = () => {
-  
-  let wallet = document.getElementById("recibe")
-  let amount = document.getElementById("monto")
+
+
+
   let msg = document.getElementById("error")
-  
-  const [address, setAddress] = useState("");
 
-  const handleChange = (e) => {
-    e.preventDefault(); // prevent the default action
-    setAddress(e.target.value); // set name to e.target.value (event)
-  };
+  const [receiver, setReceiver] = useState("");
 
-  const [numero, setNumero] = useState("");
 
-  const NumChange = (e) => {
-    e.preventDefault(); // prevent the default action
-    setNumero(e.target.value); // set name to e.target.value (event)
-    if (e.target.value <= 0){
-     msg.innerHTML = "Monto invalido, Debe ser mayor a 0"
-    }else{
-      msg.innerHTML = ""
-    }
-  };
+  const [amount, setAmount] = useState("0");
 
-  const { fetch, error, isFetching } = useWeb3Transfer({
+  console.log(amount)
+
+  const handleChange = (value) => setAmount(value)
+
+ console.log(receiver)
+
+  const { fetch, isFetching } = useWeb3Transfer({
     type: "native",
-    amount: Moralis.Units.ETH(1) * amount ,
-    receiver: wallet
+    amount: Moralis.Units.ETH(1) * amount,
+    receiver: receiver
   });
 
 
@@ -40,13 +33,24 @@ const TransferEth = () => {
   return (
     // Use your custom error component to show errors
     <div>
+      <form>
+        <FormControl mt="4">
+          <NumberInput step={0.1}  onChange={handleChange} >
+            <NumberInputField id="amount" value={amount} ></NumberInputField>
+            <NumberInputStepper>
+              <NumberIncrementStepper></NumberIncrementStepper>
+              <NumberDecrementStepper></NumberDecrementStepper>
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
+        <FormLabel mt="4" htmlFor="receiver">Send to</FormLabel>
+        <Input id="receiver" type="text" placeholder="Receiver Address" value={receiver} onChange={e => setReceiver(e.target.value)} ></Input>
+      </form>
 
-      <input id="monto" type="text" placeholder="amount" onChange={NumChange} />
-      <input id="recibe" type="text" placeholder="wallet a la q enviar" onChange={handleChange} />
 
       <h4 id="error"></h4>
-      
-      <button onClick={() => fetch()} disabled={isFetching}>          
+
+      <button onClick={() => fetch()} disabled={isFetching}>
         Transfer
       </button>
     </div>
