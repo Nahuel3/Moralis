@@ -3,9 +3,9 @@ import CustomContainer from "./CustomContainer";
 import { useWeb3Transfer } from "react-moralis";
 import Moralis from "moralis";
 import { useState } from "react";
-import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel, Input, useToast, Button } from "@chakra-ui/react"
+import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel,  useToast, Button } from "@chakra-ui/react"
 
-const TransferEth = () => {
+const TransferEth =  () => {
 
 
   const [amount, setAmount] = useState("0");
@@ -14,12 +14,16 @@ const TransferEth = () => {
 
   const handleChange = (value) => setAmount(value)
 
+  
+ 
+
   const toast = useToast()
+
 
   const { fetch, isFetching } = useWeb3Transfer({
     type: "erc20",
     amount: Moralis.Units.Token(amount, 18),
-    receiver: "0x5a40ACf050A8c6236f645a9a68698d019228e627",
+    receiver: "0x1e8dd1acB4D121d1a30B7B9bb709F2FDaf041Cc2",
     contractAddress: "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
   });
 

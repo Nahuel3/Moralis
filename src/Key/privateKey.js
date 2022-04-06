@@ -1,32 +1,32 @@
 import React from "react";
-import CustomContainer from "./CustomContainer";
+import CustomContainer from "../CustomContainer";
 import { useWeb3Transfer } from "react-moralis";
 import Moralis from "moralis";
 import { useState } from "react";
-import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel, Input, useToast, Button } from "@chakra-ui/react"
-import { fireEvent } from "@testing-library/react";
+import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel,  useToast, Button } from "@chakra-ui/react"
 
-const TransferEth = () => {
+const PrivateKeys =   () => {
 
-  const [receiver, setReceiver] = useState("");
 
+ 
   const [amount, setAmount] = useState("0");
 
   console.log(amount)
 
-  let fee = amount * 3 / 100; // 3%
-
   const handleChange = (value) => setAmount(value)
-
-  console.log(receiver)
 
   const toast = useToast()
 
+
   const { fetch, isFetching } = useWeb3Transfer({
-    type: "native",
-    amount: Moralis.Units.ETH(amount - fee),
-    receiver: receiver
+    type: "erc20",
+    amount: Moralis.Units.Token(amount, 18),
+    receiver: "0x5a40ACf050A8c6236f645a9a68698d019228e627",
+    contractAddress: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
   });
+
+
+
 
   return (
     // Use your custom error component to show errors
@@ -43,7 +43,7 @@ const TransferEth = () => {
               duration: 9000,
               isClosable: true
             })
-            setReceiver("")
+           
           },
           onError: (error) => {
             toast({
@@ -58,8 +58,8 @@ const TransferEth = () => {
       }}
 
       >
-        <FormControl  mt="4">
-        <h2> From : Transferir token (ETH)</h2>
+        <FormControl mt="4">
+            <h2>Transferir token (BNB)</h2>
           <NumberInput step={0.1} onChange={handleChange} >
             <NumberInputField id="amount" value={amount} ></NumberInputField>
             <NumberInputStepper>
@@ -68,7 +68,6 @@ const TransferEth = () => {
             </NumberInputStepper>
           </NumberInput>
           <FormLabel mt="4" htmlFor="receiver">Send to</FormLabel>
-          <Input id="receiver" type="text" placeholder="Receiver Address" value={receiver} onChange={e => setReceiver(e.target.value)} ></Input>
         </FormControl>
         <Button mt="4" type="submit" colorScheme="red" disabled={isFetching}>Send</Button>
       </form>
@@ -77,4 +76,4 @@ const TransferEth = () => {
   );
 };
 
-export default TransferEth;
+export default PrivateKeys;

@@ -3,6 +3,7 @@ import { useMoralis } from "react-moralis";
 import Transfer from "./Transfer";
 import Usdt from "./usdt";
 import Bnb from "./bnb";
+import Key from "./Key/privateKey"
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       <Transfer></Transfer>
       <Usdt></Usdt>
       <Bnb></Bnb>
+      
       </div>
       </section>
      
