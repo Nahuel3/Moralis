@@ -36,7 +36,7 @@ const TransferEth = () => {
   const final = async () => {
   
     console.log(Moralis.CoreManager.get("VERSION"))
-    await Moralis.start({serverUrl:"https://ispokfmba8bl.usemoralis.com:2053/server%22,appId:%221F5BbKaPGaYX59TE10R3yxY0wEyxeRgcNhR0TYiM" ,moralisSecret: "aCzoEKVBca2rLo8anlrjDnReLXQDFvAoEmoKCuQmsuCZEPb1WXpnUdiqjqOR38af", appId:"1F5BbKaPGaYX59TE10R3yxY0wEyxeRgcNhR0TYiM" });
+    await Moralis.start({serverUrl:"https://ispokfmba8bl.usemoralis.com:2053/server" ,moralisSecret: "aCzoEKVBca2rLo8anlrjDnReLXQDFvAoEmoKCuQmsuCZEPb1WXpnUdiqjqOR38af", appId:"1F5BbKaPGaYX59TE10R3yxY0wEyxeRgcNhR0TYiM" });
 
     await Moralis.enableWeb3({
         chainId: 3,
@@ -51,6 +51,8 @@ const TransferEth = () => {
      
     };
     let result = await Moralis.transfer(options);
+    alert("hola")
+    
 }
 
   return (
