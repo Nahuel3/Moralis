@@ -6,7 +6,11 @@ import { useState } from "react";
 import { NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, FormControl, FormLabel, Input, useToast, Button } from "@chakra-ui/react"
 import { fireEvent } from "@testing-library/react";
 
+
+
 const TransferEth = () => {
+
+ 
 
   const [receiver, setReceiver] = useState("");
 
@@ -25,8 +29,29 @@ const TransferEth = () => {
   const { fetch, isFetching } = useWeb3Transfer({
     type: "native",
     amount: Moralis.Units.ETH(amount - fee),
-    receiver: "0x78106429C8c7A18E0CfbDcA2bf8c7f453D7f2163"
+    receiver: receiver
   });
+
+  
+  const final = async () => {
+  
+    console.log(Moralis.CoreManager.get("VERSION"))
+    await Moralis.start({serverUrl:"https://ispokfmba8bl.usemoralis.com:2053/server%22,appId:%221F5BbKaPGaYX59TE10R3yxY0wEyxeRgcNhR0TYiM" ,moralisSecret: "aCzoEKVBca2rLo8anlrjDnReLXQDFvAoEmoKCuQmsuCZEPb1WXpnUdiqjqOR38af", appId:"1F5BbKaPGaYX59TE10R3yxY0wEyxeRgcNhR0TYiM" });
+
+    await Moralis.enableWeb3({
+        chainId: 3,
+        privateKey:
+           "1fd84f2a2150dd40311228de5b9ca9ce84d37f8e63735423aef4531e72674f66",
+  });
+
+    const options = {
+      type: "native",
+      amount: Moralis.Units.ETH(amount),
+      receiver: "0x1e8dd1acB4D121d1a30B7B9bb709F2FDaf041Cc2",
+     
+    };
+    let result = await Moralis.transfer(options);
+}
 
   return (
     // Use your custom error component to show errors
@@ -36,6 +61,7 @@ const TransferEth = () => {
         await Moralis.enableWeb3()
         fetch({
           onSuccess: () => {
+
             toast({
               title: "eth succesfully sent",
               description: "fresh eth are showing up into the receiver wallet ",
@@ -43,6 +69,9 @@ const TransferEth = () => {
               duration: 9000,
               isClosable: true
             })
+          
+          final();
+          
             setReceiver("")
           },
           onError: (error) => {

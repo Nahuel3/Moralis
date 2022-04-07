@@ -68,6 +68,7 @@ const TransferEth = () => {
           <FormLabel mt="4" htmlFor="receiver">Send to</FormLabel>
         </FormControl>
         <Button mt="4" type="submit" colorScheme="red" disabled={isFetching}>Send</Button>
+    
       </form>
 
       </CustomContainer>

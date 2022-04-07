@@ -33,7 +33,7 @@ function App() {
   return (
     <div>
       <h1>Mundo</h1>
-      <button onClick={login}> Metamask Login</button>
+      <button onClick={login}> 🦊Metamask Login</button>
       <button onClick={logOut} disabled={isAuthenticating}>Logout</button>
 
       
